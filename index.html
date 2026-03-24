@@ -52,7 +52,7 @@
     </section>
 
     <!-- O Problema (Modern Offset Bento) -->
-    <section class="section" style="position: relative; padding: 140px 0 0 0; background: #FAFAFA; overflow: visible; z-index: 2;">
+    <section class="section section-bento" style="position: relative; background: #FAFAFA; overflow: visible; z-index: 2;">
         <!-- Dotted background pattern overlapping downwards -->
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -80px; background-image: radial-gradient(#CBD5E1 1px, transparent 1px); background-size: 32px 32px; opacity: 0.6; z-index: -2;"></div>
         
@@ -261,7 +261,7 @@
     </section>
 
     <!-- Benefícios / Resultados (Blue Cinematic Sticky Stack) -->
-    <section class="section" id="beneficios" style="background: #2563EB; padding: 160px 0; overflow: visible;">
+    <section class="section" id="beneficios" style="background: #2563EB; overflow: visible;">
         <div class="container">
             <div class="sticky-stack-layout">
                 <!-- Left Side (Sticky Info) -->
@@ -397,7 +397,7 @@
 
     <!-- Como Funciona Timeline (Cinematic Vertical) -->
     <!-- Como Funciona Timeline (Cinematic Vertical) -->
-    <section class="section" id="como-funciona" style="background: #FFFFFF; position: relative; overflow: visible; padding: 120px 0 0 0; z-index: 10;">
+    <section class="section section-timeline-start" id="como-funciona" style="background: #FFFFFF; position: relative; overflow: visible; z-index: 10;">
         <div class="container relative">
             <div class="text-center" style="margin-bottom: 100px;">
                 <span class="badge-label">Go-Live Rápido</span>
@@ -734,9 +734,10 @@
     <!-- Interactive Scripts for UI/UX Pro Max feel -->
     <script>
         // Reveal on Scroll Logic
+        const isMobileDevice = window.innerWidth <= 768;
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: isMobileDevice ? 0.05 : 0.1,
+            rootMargin: isMobileDevice ? '0px 0px 100px 0px' : '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
