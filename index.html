@@ -11,22 +11,40 @@
 <body>
 
     <!-- Header -->
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+    <header class="glass-header">
+        <div class="container header-container">
             <div class="logo">
-                <img src="apoio/logo_enviroasset.jpeg" alt="EnviroAsset Logo" style="height: 44px; mix-blend-mode: multiply;">
+                <img src="apoio/Logo_ass_fim-04.png" alt="EnviroAsset Logo" class="header-logo">
             </div>
-            <nav id="main-nav" style="display: none;">
-                <!-- Desktop Nav would go here, simplified for demo -->
-                <ul style="display: flex; list-style: none; gap: 32px;">
-                    <li><a href="#como-funciona">Como Funciona</a></li>
-                    <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#problema" class="nav-link">O Problema</a></li>
+                    <li><a href="#funcionalidades" class="nav-link">Funcionalidades</a></li>
+                    <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+                    <li><a href="#customizacao" class="nav-link">Customização</a></li>
+                    <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
                 </ul>
             </nav>
-            <div class="header-action" style="display: flex; gap: 16px;">
-                <a href="#contato" class="btn btn-primary" id="header-btn">Agendar Reunião</a>
-            </div>
+
+            <button class="mobile-menu-btn" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Overlay -->
+        <div class="mobile-nav-overlay">
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#problema" class="mobile-nav-link">O Problema</a></li>
+                    <li><a href="#funcionalidades" class="mobile-nav-link">Funcionalidades</a></li>
+                    <li><a href="#beneficios" class="mobile-nav-link">Benefícios</a></li>
+                    <li><a href="#customizacao" class="mobile-nav-link">Customização</a></li>
+                    <li><a href="#como-funciona" class="mobile-nav-link">Como Funciona</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -43,8 +61,11 @@
                 </div>
                 <h1><span style="color: var(--color-secondary);">Eficiência Ambiental e Fiscal</span> em um único Ecossistema Inteligente</h1>
                 <p class="section-subtitle" style="margin-left: 0;">Plataforma completa de licenciamento ambiental digital. Mais arrecadação, menos burocracia, total transparência com a solução líder para Prefeituras.</p>
-                <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
-                    <a href="#contato" class="btn btn-primary">Agendar Demonstração Gratuita</a>
+                <div class="hero-cta-row" style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
+                    <a href="https://tinyurl.com/enviroassetlicenciamentowpp" class="btn-cta-premium">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Agendar Demonstração Gratuita
+                    </a>
                 </div>
             </div>
 
@@ -52,7 +73,7 @@
     </section>
 
     <!-- O Problema (Modern Offset Bento) -->
-    <section class="section section-bento" style="position: relative; background: #FAFAFA; overflow: visible; z-index: 2;">
+    <section class="section section-bento" id="problema" style="position: relative; background: #FAFAFA; overflow: visible; z-index: 2;">
         <!-- Dotted background pattern overlapping downwards -->
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -80px; background-image: radial-gradient(#CBD5E1 1px, transparent 1px); background-size: 32px 32px; opacity: 0.6; z-index: -2;"></div>
         
@@ -81,7 +102,7 @@
             <div class="modern-card-container" style="max-width: 1000px; margin: 0 auto; position: relative;">
                 
                 <!-- Card 1: Light (Caos no Balcão) -->
-                <div class="modern-card modern-card-1 stagger-2 hover-float" style="background: #FFFFFF; border-radius: 40px; padding: 48px; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05); position: relative; border: 1px solid rgba(241, 245, 249, 1);">
+                <div class="modern-card modern-card-1 stagger-2 hover-float reveal-on-scroll" style="background: #FFFFFF; border-radius: 40px; padding: 48px; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05); position: relative; border: 1px solid rgba(241, 245, 249, 1);">
                     <div style="width: 56px; height: 56px; margin-bottom: 32px; background: #F8FAFC; border: 1px solid #E2E8F0; color: #0F172A; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg>
                     </div>
@@ -99,7 +120,7 @@
                 </div>
 
                 <!-- Card 2: Royal Blue (Análises Travadas) -->
-                <div class="modern-card modern-card-2 stagger-3" style="background: #2563EB; border-radius: 40px; padding: 48px; box-shadow: 0 40px 80px -20px rgba(37, 99, 235, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); position: relative;">
+                <div class="modern-card modern-card-2 stagger-3 reveal-on-scroll" style="background: #2563EB; border-radius: 40px; padding: 48px; box-shadow: 0 40px 80px -20px rgba(37, 99, 235, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); position: relative;">
                     <div class="dark-card-content" style="display: flex; gap: 40px;">
                         <div style="flex: 1;">
                             <div style="width: 56px; height: 56px; margin-bottom: 32px; background: #FFFFFF; color: #2563EB; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);">
@@ -129,8 +150,39 @@
                     </div>
                 </div>
 
+                <!-- Card 4: Purple (Arrecadação Lenta) -->
+                <div class="modern-card modern-card-4 stagger-4 reveal-on-scroll" style="background: #7C3AED; border-radius: 40px; padding: 48px; box-shadow: 0 40px 80px -20px rgba(124, 58, 237, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); position: relative;">
+                    <div class="dark-card-content" style="display: flex; gap: 40px;">
+                        <div style="flex: 1;">
+                            <div style="width: 56px; height: 56px; margin-bottom: 32px; background: #FFFFFF; color: #7C3AED; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10"></path><path d="M12 22a10 10 0 0 1-10-10"></path><path d="M12 6v6l4 2"></path></svg>
+                            </div>
+                            <h3 style="font-size: 28px; font-weight: 800; color: #FFFFFF; margin-bottom: 16px; letter-spacing: -0.02em;">Arrecadação Lenta</h3>
+                            <p style="color: rgba(255, 255, 255, 0.9); font-size: 15px; line-height: 1.7; margin-bottom: 0;">
+                                A burocracia e a falta de transparência afastam investimentos e empreendedores. A lentidão nos processos se traduz em perda de receita para o município.
+                            </p>
+                        </div>
+                        <!-- UI Element inside Card -->
+                        <div class="hidden-mobile" style="flex: 1; background: rgba(255, 255, 255, 0.15); border-radius: 24px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.3); display: flex; flex-direction: column;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                                <span style="font-size: 9px; font-weight: 800; color: #FFFFFF; letter-spacing: 0.1em; text-transform: uppercase;">Fluxo de Caixa</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10"></path><path d="M12 22a10 10 0 0 1-10-10"></path><path d="M12 6v6l4 2"></path></svg>
+                            </div>
+                            <!-- Fake Progress bars -->
+                            <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: auto;">
+                                <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;"><div style="width: 60%; height: 100%; background: #FFFFFF;"></div></div>
+                                <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;"><div style="width: 30%; height: 100%; background: rgba(255, 255, 255, 0.7);"></div></div>
+                                <div style="width: 100%; height: 6px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden;"><div style="width: 90%; height: 100%; background: #FFFFFF;"></div></div>
+                            </div>
+                            <div style="margin-top: 24px; display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; color: #FFFFFF; cursor: pointer; text-transform: uppercase;">
+                                Acelerar Receita <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Card 3: Light (Controle Cego) -->
-                <div class="modern-card modern-card-3 stagger-4" style="background: #FFFFFF; border-radius: 40px; padding: 48px; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05); position: relative; border: 1px solid rgba(241, 245, 249, 1);">
+                <div class="modern-card modern-card-3 stagger-5 hover-float reveal-on-scroll" style="background: #FFFFFF; border-radius: 40px; padding: 48px; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05); position: relative; border: 1px solid rgba(241, 245, 249, 1);">
                     <div style="width: 56px; height: 56px; margin-bottom: 32px; background: #F1F5F9; color: #0F172A; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" y1="2" x2="22" y2="22"></line></svg>
                     </div>
@@ -276,26 +328,22 @@
                 <!-- Right Side (Cards Stack - White Cards) -->
                 <div class="sticky-cards-container">
                     <!-- Card 1 -->
-                    <div class="sticky-card" style="top: 120px; z-index: 1;">
-                        <div class="card-number" style="background: linear-gradient(135deg, #34D399, #059669); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">01</div>
+                    <div class="sticky-card reveal-on-scroll" style="top: 120px; z-index: 1;">
                         <h3 style="color: #0F172A; font-size: 28px; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.02em;">Desburocratização</h3>
                         <p style="color: #64748B; font-size: 16px; line-height: 1.7;">Digitalização 100% que traz clareza e previsibilidade para os processos de licenciamento e elimina imediatamente a volumetria de papel.</p>
                     </div>
                     <!-- Card 2 -->
-                    <div class="sticky-card" style="top: 160px; z-index: 2;">
-                        <div class="card-number" style="background: linear-gradient(135deg, #34D399, #059669); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">02</div>
+                    <div class="sticky-card reveal-on-scroll" style="top: 160px; z-index: 2;">
                         <h3 style="color: #0F172A; font-size: 28px; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.02em;">Eficiência Operacional</h3>
                         <p style="color: #64748B; font-size: 16px; line-height: 1.7;">Menos retrabalho e extinção total de processos manuais. Aloque o tempo da equipe técnica onde realmente importa: em vistorias complexas e decisões ágeis.</p>
                     </div>
                     <!-- Card 3 -->
-                    <div class="sticky-card" style="top: 200px; z-index: 3;">
-                        <div class="card-number" style="background: linear-gradient(135deg, #34D399, #059669); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">03</div>
+                    <div class="sticky-card reveal-on-scroll" style="top: 200px; z-index: 3;">
                         <h3 style="color: #0F172A; font-size: 28px; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.02em;">Segurança Jurídica</h3>
                         <p style="color: #64748B; font-size: 16px; line-height: 1.7;">Painel corporativo que entrega um rastro de auditoria inalterável e total transparência. Conformidade absoluta e comprovável com a Lei 15.190/2025.</p>
                     </div>
-                    <!-- Card 4 -->
-                    <div class="sticky-card" style="top: 240px; z-index: 4;">
-                        <div class="card-number" style="background: linear-gradient(135deg, #34D399, #059669); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">04</div>
+                    <!-- Card 1 -->
+                    <div class="sticky-card reveal-on-scroll" style="top: 240px; z-index: 4;">
                         <h3 style="color: #0F172A; font-size: 28px; margin-bottom: 16px; font-weight: 800; letter-spacing: -0.02em;">Receita Presente</h3>
                         <p style="color: #64748B; font-size: 16px; line-height: 1.7;">O fim dos gargalos zera atrasos nos licenciamentos. Antecipe a arrecadação da Prefeitura tributária e traga novos recursos volumosos pro caixa ainda hoje.</p>
                     </div>
@@ -364,7 +412,7 @@
 
 
     <!-- Customização -->
-    <section class="section" style="overflow: hidden;">
+    <section class="section" id="customizacao" style="overflow: hidden;">
         <div class="container">
             <div class="grid grid-2">
                 <div class="slide-in-left">
@@ -412,7 +460,7 @@
                 <div id="timeline-progress" style="position: absolute; top: 0; left: 50%; width: 4px; height: 0%; background: linear-gradient(to bottom, #38BDF8, #2563EB); transform: translateX(-50%); z-index: 2; border-radius: 4px; transition: height 0.1s ease-out; box-shadow: 0 0 15px rgba(37, 99, 235, 0.4);"></div>
                 
                 <!-- Step 1 -->
-                <div class="timeline-row flex-left">
+                <div class="timeline-row flex-left reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="step-badge" style="color: #0284C7; background: #F0F9FF;">1 Semana</div>
@@ -422,7 +470,7 @@
                 </div>
 
                 <!-- Step 2 -->
-                <div class="timeline-row flex-right">
+                <div class="timeline-row flex-right reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="step-badge" style="color: #0284C7; background: #F0F9FF;">2 Semanas</div>
@@ -432,7 +480,7 @@
                 </div>
 
                 <!-- Step 3 -->
-                <div class="timeline-row flex-left">
+                <div class="timeline-row flex-left reveal-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card">
                         <div class="step-badge" style="color: #0284C7; background: #F0F9FF;">1 Semana</div>
@@ -442,7 +490,7 @@
                 </div>
 
                 <!-- Step 4 -->
-                <div class="timeline-row flex-right" style="margin-bottom: 0;">
+                <div class="timeline-row flex-right reveal-on-scroll" style="margin-bottom: 0;">
                     <div class="timeline-dot"></div>
                     <div class="timeline-card" style="margin-bottom: -100px; position: relative; z-index: 20;">
                         <div class="step-badge" style="color: #FFFFFF; background: #25D366; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);">Imediato</div>
@@ -597,7 +645,7 @@
         <div style="position: absolute; bottom: -10%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 70%); filter: blur(80px); pointer-events: none;"></div>
         
         <!-- Timeline Receiver Dot -->
-        <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%) translateY(-10px); width: 20px; height: 20px; background: #38BDF8; border-radius: 50%; border: 4px solid #FFFFFF; box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); z-index: 2;"></div>
+        <div class="timeline-receiver-dot" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%) translateY(-10px); width: 20px; height: 20px; background: #38BDF8; border-radius: 50%; border: 4px solid #FFFFFF; box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); z-index: 2;"></div>
 
         <div class="container reveal-on-scroll">
             <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px; color: #FFFFFF; font-weight: 800; letter-spacing: -0.02em;">Transforme seu Município em Referência</h2>
@@ -605,20 +653,17 @@
                 Agende uma demonstração personalizada da plataforma EnviroAsset Licenciamento e descubra como aumentar sua arrecadação ainda este ano.
             </p>
             
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 80px;">
-                <a href="#" class="btn" style="background: #25D366; color: white; padding: 18px 36px; border-radius: 16px; font-weight: 700; box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 448 512" style="margin-right: 10px;"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.6-30.6-38.1-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.3.5-3.8 0-7.4-1.3-10.2-1.9-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.7 23.5 9.2 31.6 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.5 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-                    WhatsApp Especialista
-                </a>
-                <a href="#" class="btn" style="background: #FFFFFF; color: #2563EB; padding: 18px 36px; border-radius: 16px; font-weight: 700; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <div class="cta-btn-group" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 80px;">
+                <a href="https://tinyurl.com/enviroassetlicenciamentowpp" class="btn-cta-premium">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                     Solicitar Demonstração Completa
                 </a>
             </div>
             
-            <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+            <div class="cta-highlights-row" style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
                 <!-- Glass Highlight 1 -->
-                <div style="flex: 1; min-width: 320px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 32px; border-radius: 24px; display: flex; align-items: flex-start; gap: 20px; transition: transform 0.3s ease;">
-                    <div style="background: rgba(255, 255, 255, 0.2); padding: 12px; border-radius: 12px;">
+                <div class="cta-highlight-card" style="flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 32px; border-radius: 24px; display: flex; align-items: flex-start; gap: 20px; transition: transform 0.3s ease;">
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 12px; border-radius: 12px; flex-shrink: 0;">
                         <svg fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px; color: #FFFFFF;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>
                     </div>
                     <div style="text-align: left;">
@@ -627,8 +672,8 @@
                     </div>
                 </div>
                 <!-- Glass Highlight 2 -->
-                <div style="flex: 1; min-width: 320px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 32px; border-radius: 24px; display: flex; align-items: flex-start; gap: 20px; transition: transform 0.3s ease;">
-                    <div style="background: rgba(255, 255, 255, 0.2); padding: 12px; border-radius: 12px;">
+                <div class="cta-highlight-card" style="flex: 1; min-width: 280px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); padding: 32px; border-radius: 24px; display: flex; align-items: flex-start; gap: 20px; transition: transform 0.3s ease;">
+                    <div style="background: rgba(255, 255, 255, 0.2); padding: 12px; border-radius: 12px; flex-shrink: 0;">
                         <svg fill="currentColor" viewBox="0 0 20 20" style="width: 32px; height: 32px; color: #FFFFFF;"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
                     </div>
                     <div style="text-align: left;">
@@ -646,7 +691,7 @@
             <div class="footer-grid" style="grid-template-columns: 2fr 1fr 1.5fr; gap: 60px; margin-bottom: 60px;">
                 <!-- Brand Column -->
                 <div>
-                    <img src="apoio/logo_enviroasset.jpeg" alt="EnviroAsset Logo" style="height: 50px; margin-bottom: 20px; display: block;">
+                    <img src="apoio/Logo_ass_fim-04.png" alt="EnviroAsset Logo" style="height: 50px; margin-bottom: 20px; display: block;">
                     <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; max-width: 320px;">
                         Soluções inteligentes para desafios complexos através da análise estratégica de dados.
                     </p>
@@ -733,23 +778,66 @@
 
     <!-- Interactive Scripts for UI/UX Pro Max feel -->
     <script>
-        // Reveal on Scroll Logic
+        // Reveal on Scroll Logic — UI UX Pro Max (mobile-optimised)
         const isMobileDevice = window.innerWidth <= 768;
         const observerOptions = {
-            threshold: isMobileDevice ? 0.05 : 0.1,
-            rootMargin: isMobileDevice ? '0px 0px 100px 0px' : '0px 0px -50px 0px'
+            threshold: isMobileDevice ? 0.04 : 0.1,
+            rootMargin: isMobileDevice ? '0px 0px 60px 0px' : '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    entry.target.classList.add('is-active'); // For timeline rows
                 }
             });
         }, observerOptions);
 
         const animatedElements = document.querySelectorAll('.reveal-on-scroll, .slide-in-left, .slide-in-right, .scale-up');
         animatedElements.forEach(el => observer.observe(el));
+
+        // Hide timeline receiver dot on mobile
+        if (isMobileDevice) {
+            const dot = document.querySelector('.timeline-receiver-dot');
+            if (dot) dot.style.display = 'none';
+        }
+
+        // --- NEW: Header & Navigation Logic ---
+        const header = document.querySelector('.glass-header');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const overlay = document.querySelector('.mobile-nav-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+        // Toggle glass effect on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            menuBtn.classList.toggle('active');
+            overlay.classList.toggle('active');
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+        }
+
+        if (menuBtn) {
+            menuBtn.addEventListener('click', toggleMenu);
+        }
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (overlay.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
     </script>
 </body>
 </html>
