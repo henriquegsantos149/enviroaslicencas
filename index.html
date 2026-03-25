@@ -782,41 +782,98 @@
                 box-shadow: 0 0 6px rgba(239, 68, 68, .4);
             }
 
-            /* ===== RESPONSIVE ===== */
+            /* ===== RESPONSIVE OPTIMIZATIONS ===== */
             @media (max-width: 860px) {
+                .feature-carousel-container {
+                    border-radius: 24px;
+                    margin-top: 10px;
+                }
+
+                .fc-sidebar {
+                    padding: 16px 12px;
+                    min-height: auto;
+                }
+
+                .fc-chips-wrapper {
+                    flex-direction: row;
+                    overflow-x: auto;
+                    width: 100%;
+                    gap: 8px;
+                    padding-bottom: 4px;
+                    justify-content: flex-start;
+                    /* Hide scrollbar but keep functionality */
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+                .fc-chips-wrapper::-webkit-scrollbar { display: none; }
+
+                .fc-chip {
+                    padding: 8px 16px;
+                    gap: 8px;
+                    font-size: 11px;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+
+                .fc-chip-icon svg {
+                    width: 14px;
+                    height: 14px;
+                }
+
+                .fc-content {
+                    padding: 24px 12px;
+                    min-height: 400px;
+                }
+
+                .fc-card-wrap {
+                    max-width: 92%;
+                }
+
+                .prob-card {
+                    border-radius: 24px;
+                    border-width: 2px;
+                }
 
                 .prob-card-inner {
-                    padding: 32px 28px 20px 28px;
+                    padding: 24px 20px 16px 20px;
+                }
+
+                .prob-icon {
+                    width: 36px;
+                    height: 36px;
+                    margin-bottom: 16px;
+                }
+                .prob-icon svg { width: 18px; height: 18px; }
+
+                .prob-title {
+                    font-size: 19px;
+                    margin-bottom: 10px;
+                }
+
+                .prob-desc {
+                    font-size: 13px;
+                    line-height: 1.6;
                 }
 
                 .prob-card-footer {
-                    padding: 0 28px 24px 28px;
+                    padding: 0 20px 20px 20px;
                 }
 
                 .prob-mockup {
-                    margin: 0 16px 16px 16px;
+                    margin: 0 12px 12px 12px;
+                    padding: 12px;
+                    border-radius: 14px;
                 }
 
-                /* On mobile, keep scroll-reveal but faster */
+                .pm-row { margin-bottom: 6px; }
+                .pm-label { font-size: 9px; }
+                .pm-tag { font-size: 8px; padding: 2px 8px; }
+
+                /* Faster animations on mobile */
                 .prob-card {
-                    transition-duration: 0.55s !important;
+                    transition-duration: 0.5s !important;
                 }
-
-                .prob-card:nth-child(1) {
-                    transition-delay: 0.04s;
-                }
-
-                .prob-card:nth-child(2) {
-                    transition-delay: 0.12s;
-                }
-
-                .prob-card:nth-child(3) {
-                    transition-delay: 0.20s;
-                }
-
-                .prob-card:nth-child(4) {
-                    transition-delay: 0.28s;
-                }
+                .prob-card:nth-child(n) { transition-delay: 0s !important; }
             }
 
             /* Override global reveal-on-scroll for these cards: they handle their own animation */
