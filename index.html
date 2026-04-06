@@ -35,9 +35,23 @@
                 <span></span>
             </button>
         </div>
+    </header>
 
-        <!-- Mobile Nav Overlay -->
-        <div class="mobile-nav-overlay">
+    <!-- Mobile Nav — outside header to fix iOS Safari fixed/z-index stacking bug -->
+    <div class="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+        <!-- Dim backdrop (tap to close) -->
+        <div class="mobile-nav-backdrop"></div>
+        <!-- Slide-in panel -->
+        <div class="mobile-nav-panel">
+            <div class="mobile-nav-panel-header">
+                <img src="apoio/Logo_ass_fim-04.png" alt="EnviroAsset" class="mobile-nav-logo">
+                <button class="mobile-nav-close" aria-label="Fechar menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
             <nav class="mobile-nav">
                 <ul>
                     <li><a href="#problema" class="mobile-nav-link">O Problema</a></li>
@@ -47,13 +61,24 @@
                     <li><a href="#como-funciona" class="mobile-nav-link">Como Funciona</a></li>
                 </ul>
             </nav>
+            <div class="mobile-nav-panel-footer">
+                <a href="https://tinyurl.com/enviroassetlicenciamentowpp" class="btn-cta-premium mobile-nav-cta" onclick="document.querySelector('.mobile-nav-overlay').classList.remove('active'); document.querySelector('.mobile-menu-btn').classList.remove('active'); document.body.style.overflow='';">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Agendar Demonstração
+                </a>
+            </div>
         </div>
-    </header>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-saas">
         <video class="hero-video-bg" autoplay loop muted playsinline>
-            <source src="apoio/video_home_enviroasset_rev5.mp4" type="video/mp4">
+            <source src="apoio/video_home_enviroasset_rev6.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
         <div class="container hero-container">
@@ -62,8 +87,36 @@
                     <span style="color: var(--color-primary); font-weight: 700;">Conformidade</span> com a Lei
                     15.190/2025
                 </div>
-                <h1><span style="color: var(--color-secondary);">Eficiência Ambiental e Fiscal</span> em um único
-                    Ecossistema Inteligente</h1>
+                <!-- Dynamic title: phrase 1 → phrase 2 → phrase 3 (stays) -->
+                <div class="hero-dyn-title" id="heroDynTitle">
+                    <!-- Phrase 1: word-by-word on load -->
+                    <div class="hdt-frame hdt-frame-1">
+                        <span class="hdt-w" style="--i:0">A</span>
+                        <span class="hdt-w" style="--i:1">Plataforma</span>
+                        <span class="hdt-w" style="--i:2">faz</span>
+                        <span class="hdt-w" style="--i:3">o</span>
+                        <span class="hdt-w" style="--i:4">trabalho</span>
+                        <span class="hdt-w" style="--i:5">braçal</span>
+                        <span class="hdt-w" style="--i:6">pra</span>
+                        <span class="hdt-w hdt-g" style="--i:7">você...</span>
+                    </div>
+                    <!-- Phrase 2: word-by-word triggered on enter -->
+                    <div class="hdt-frame hdt-frame-2">
+                        <span class="hdt-w2 hdt-g" style="--i:0">Agilidade</span>
+                        <span class="hdt-w2" style="--i:1">para</span>
+                        <span class="hdt-w2" style="--i:2">a</span>
+                        <span class="hdt-w2" style="--i:3">Prefeitura,</span>
+                        <span class="hdt-br"></span>
+                        <span class="hdt-w2 hdt-b" style="--i:4">Transparência</span>
+                        <span class="hdt-w2" style="--i:5">para</span>
+                        <span class="hdt-w2" style="--i:6">o</span>
+                        <span class="hdt-w2" style="--i:7">Cidadão</span>
+                    </div>
+                    <!-- Phrase 3: smooth fade-up, stays permanently -->
+                    <div class="hdt-frame hdt-frame-3">
+                        <span style="color: var(--color-secondary);">Eficiência Ambiental e Fiscal</span> em um único sistema inteligente
+                    </div>
+                </div>
                 <p class="section-subtitle" style="margin-left: 0;">Plataforma completa de licenciamento ambiental
                     digital. Mais arrecadação, menos burocracia, total transparência com a solução líder para
                     Prefeituras.</p>
@@ -1760,10 +1813,12 @@
             if (dot) dot.style.display = 'none';
         }
 
-        // --- NEW: Header & Navigation Logic ---
+        // --- Header & Navigation Logic ---
         const header = document.querySelector('.glass-header');
         const menuBtn = document.querySelector('.mobile-menu-btn');
         const overlay = document.querySelector('.mobile-nav-overlay');
+        const backdrop = document.querySelector('.mobile-nav-backdrop');
+        const closeBtn = document.querySelector('.mobile-nav-close');
         const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
         // Toggle glass effect on scroll
@@ -1775,26 +1830,84 @@
             }
         });
 
-        // Toggle mobile menu
+        function openMenu() {
+            menuBtn.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuBtn.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         function toggleMenu() {
-            menuBtn.classList.toggle('active');
-            overlay.classList.toggle('active');
-            // Prevent body scroll when menu is open
-            document.body.style.overflow = overlay.classList.contains('active') ? 'hidden' : '';
+            overlay.classList.contains('active') ? closeMenu() : openMenu();
         }
 
-        if (menuBtn) {
-            menuBtn.addEventListener('click', toggleMenu);
-        }
+        if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
+        if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if (backdrop) backdrop.addEventListener('click', closeMenu);
 
-        // Close menu when clicking a link
+        // Close on link tap
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (overlay.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
+            link.addEventListener('click', closeMenu);
         });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu();
+        });
+
+        // Dynamic hero title: phrase 1 → phrase 2 → phrase 3 (stays)
+        (function () {
+            var dynTitle = document.getElementById('heroDynTitle');
+            if (!dynTitle) return;
+            var f1 = dynTitle.querySelector('.hdt-frame-1');
+            var f2 = dynTitle.querySelector('.hdt-frame-2');
+            var f3 = dynTitle.querySelector('.hdt-frame-3');
+
+            // Smoothly transitions 'from' out and 'to' in, calls onDone when 'to' is settled
+            function switchFrame(from, to, onDone) {
+                // Measure 'to' height while hidden in flow
+                var prev = to.style.cssText;
+                to.style.cssText = 'position:static;visibility:hidden;opacity:0;transform:none;filter:none;transition:none;';
+                var toH = to.offsetHeight;
+                to.style.cssText = prev;
+
+                // Lock height + enable transition
+                dynTitle.style.height = dynTitle.offsetHeight + 'px';
+                dynTitle.style.transition = 'height 0.65s cubic-bezier(0.16,1,0.3,1)';
+
+                // Exit 'from'
+                from.classList.add('hdt-exit');
+
+                setTimeout(function () {
+                    from.style.display = 'none';
+                    dynTitle.style.height = toH + 'px';
+                    to.style.position = 'relative';
+                    to.classList.add('hdt-enter');
+
+                    setTimeout(function () {
+                        dynTitle.style.height = '';
+                        dynTitle.style.transition = '';
+                        if (onDone) onDone();
+                    }, 700);
+                }, 460);
+            }
+
+            // f1 last word ends at: 0.3 + 7*0.13 + 0.6 ≈ 1.81s → hold → exit at 4.5s
+            setTimeout(function () {
+                switchFrame(f1, f2, function () {
+                    // f2 last word ends at: 0.1 + 7*0.13 + 0.6 ≈ 1.61s after enter
+                    // hold comfortably, then show f3
+                    setTimeout(function () {
+                        switchFrame(f2, f3);
+                    }, 4000);
+                });
+            }, 4500);
+        })();
     </script>
 </body>
 
