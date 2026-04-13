@@ -186,44 +186,112 @@ h3 { font-size: clamp(20px, 3vw, 24px); font-weight: 600; }
   padding: 8px;
   z-index: 1001;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 .mobile-menu-btn span {
   display: block;
-  width: 28px;
+  width: 26px;
   height: 2px;
   background: #0F172A;
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .mobile-menu-btn.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 .mobile-menu-btn.active span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 .mobile-menu-btn.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Nav Overlay */
+/* ── Mobile Nav — full-screen overlay (OUTSIDE header to avoid iOS Safari stacking bugs) ── */
 .mobile-nav-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  z-index: 999;
+  inset: 0;
+  z-index: 2000; /* well above header (1000) */
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  pointer-events: none;
+}
+.mobile-nav-overlay.active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Dim backdrop */
+.mobile-nav-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 40, 0.5);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-nav-overlay.active .mobile-nav-backdrop {
+  opacity: 1;
+}
+
+/* Slide-in panel from right */
+.mobile-nav-panel {
+  position: relative;
+  width: min(85vw, 320px);
+  height: 100%;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+  box-shadow: -8px 0 40px rgba(10, 20, 40, 0.18);
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-nav-overlay.active .mobile-nav-panel {
+  transform: translateX(0);
+}
+
+/* Panel header: logo + close button */
+.mobile-nav-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #F1F5F9;
+  flex-shrink: 0;
+  min-height: 64px;
+}
+.mobile-nav-logo {
+  height: 32px;
+  width: auto;
+}
+.mobile-nav-close {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #F8FAFC;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #475569;
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.mobile-nav-overlay.active {
-  opacity: 1;
-  visibility: visible;
+.mobile-nav-close:hover,
+.mobile-nav-close:active {
+  background: #E2E8F0;
+  color: #0F172A;
+}
+
+/* Nav links */
+.mobile-nav {
+  flex: 1;
+  padding: 12px 0;
 }
 .mobile-nav ul {
   list-style: none;
@@ -231,29 +299,57 @@ h3 { font-size: clamp(20px, 3vw, 24px); font-weight: 600; }
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  text-align: center;
+}
+.mobile-nav li {
+  border-bottom: 1px solid #F8FAFC;
 }
 .mobile-nav-link {
-  font-size: 28px;
-  font-weight: 800;
-  color: #0F172A;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1E293B;
   text-decoration: none;
-  letter-spacing: -0.03em;
-  transform: translateY(20px);
+  letter-spacing: -0.01em;
+  transform: translateX(16px);
   opacity: 0;
-  display: inline-block;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.15s ease,
+              color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 56px; /* comfortable tap target */
+}
+.mobile-nav-link:active {
+  background: #F8FAFC;
+  color: var(--color-primary);
 }
 .mobile-nav-overlay.active .mobile-nav-link {
-  transform: translateY(0);
+  transform: translateX(0);
   opacity: 1;
 }
-.mobile-nav-overlay.active li:nth-child(1) .mobile-nav-link { transition-delay: 0.1s; }
-.mobile-nav-overlay.active li:nth-child(2) .mobile-nav-link { transition-delay: 0.15s; }
-.mobile-nav-overlay.active li:nth-child(3) .mobile-nav-link { transition-delay: 0.2s; }
-.mobile-nav-overlay.active li:nth-child(4) .mobile-nav-link { transition-delay: 0.25s; }
-.mobile-nav-overlay.active li:nth-child(5) .mobile-nav-link { transition-delay: 0.3s; }
+.mobile-nav-overlay.active li:nth-child(1) .mobile-nav-link { transition-delay: 0.08s; }
+.mobile-nav-overlay.active li:nth-child(2) .mobile-nav-link { transition-delay: 0.13s; }
+.mobile-nav-overlay.active li:nth-child(3) .mobile-nav-link { transition-delay: 0.18s; }
+.mobile-nav-overlay.active li:nth-child(4) .mobile-nav-link { transition-delay: 0.23s; }
+.mobile-nav-overlay.active li:nth-child(5) .mobile-nav-link { transition-delay: 0.28s; }
+
+/* Bottom CTA */
+.mobile-nav-panel-footer {
+  padding: 20px 24px;
+  padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  border-top: 1px solid #F1F5F9;
+  flex-shrink: 0;
+}
+.mobile-nav-cta {
+  width: 100% !important;
+  justify-content: center;
+  font-size: 15px !important;
+  padding: 16px 20px !important;
+  border-radius: 14px !important;
+}
 
 /* Desktop/Mobile breakpoint for nav */
 @media (max-width: 1024px) {
@@ -340,44 +436,57 @@ h3 { font-size: clamp(20px, 3vw, 24px); font-weight: 600; }
     /* ── Hero Section ── */
     .hero-saas {
         min-height: 100svh;
-        padding: 80px 0 60px;
-        align-items: center;
+        padding: 72px 0 48px;
+        align-items: flex-start;
+        padding-top: max(72px, env(safe-area-inset-top, 0px) + 72px);
     }
     .hero-overlay {
         background: linear-gradient(160deg,
-            rgba(255,255,255,0.94) 0%,
-            rgba(255,255,255,0.82) 60%,
-            rgba(255,255,255,0.5) 100%) !important;
+            rgba(255,255,255,0.96) 0%,
+            rgba(255,255,255,0.88) 60%,
+            rgba(255,255,255,0.6) 100%) !important;
     }
     .hero-container {
         flex-direction: column;
         text-align: center;
+        padding: 0 20px;
+        width: 100%;
     }
     .hero-content {
         max-width: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     .hero-content h1 {
-        font-size: clamp(30px, 8vw, 42px) !important;
-        line-height: 1.15 !important;
-        margin-bottom: 16px;
+        font-size: clamp(26px, 7vw, 36px) !important;
+        line-height: 1.18 !important;
+        margin-bottom: 14px;
     }
     .hero-content .section-subtitle {
-        font-size: 16px;
-        line-height: 1.65;
-        max-width: 90%;
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 92%;
+        color: var(--text-muted);
     }
     .hero-stats-badge {
-        padding: 8px 16px;
-        font-size: 13px;
-        margin-bottom: 20px;
+        padding: 7px 14px;
+        font-size: 12px;
+        margin-bottom: 16px;
         justify-content: center;
         width: auto;
         max-width: 100%;
         text-align: center;
         white-space: normal;
+    }
+    /* CTA row full-width on mobile */
+    .hero-cta-row {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        margin-top: 24px !important;
     }
     /* CTA buttons in hero */
     .hero-content > div[style*="display: flex"] {
@@ -396,11 +505,13 @@ h3 { font-size: clamp(20px, 3vw, 24px); font-weight: 600; }
     /* ── General Buttons ── */
     .btn, .btn-cta-premium {
         width: 100% !important;
+        max-width: 100% !important;
         justify-content: center;
         min-height: 54px;
-        font-size: 16px;
+        font-size: 15px;
         border-radius: 14px;
-        padding: 16px 24px !important;
+        padding: 16px 20px !important;
+        box-sizing: border-box;
     }
 
     /* ── Bento Cards (O Problema section) ── */
@@ -813,4 +924,125 @@ footer a:hover { color: #FFFFFF; }
     /* Como Funciona section spacing */
     .section-timeline-start { padding-top: 80px !important; }
     .interactive-timeline > div:last-child .timeline-card { margin-bottom: 0 !important; }
+}
+
+/* ===================================================
+   HERO DYNAMIC TITLE — phrase 1 → phrase 2 on load
+   =================================================== */
+
+.hero-dyn-title {
+    position: relative;
+    margin-bottom: 20px;
+    /* height driven by JS during transition */
+}
+
+.hdt-frame {
+    font-family: var(--font-family-heading);
+    font-size: clamp(32px, 4.2vw, 48px);
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+/* Phrase 1 — in normal flow, sets container height */
+.hdt-frame-1 { position: relative; }
+
+/* ── Word-by-word reveal ── */
+.hdt-w {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(5px);
+    animation: hdt-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.3s + var(--i) * 0.13s);
+}
+
+@keyframes hdt-in {
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+.hdt-br { display: block; height: 0; }
+
+.hdt-g { color: #10B981; }
+.hdt-b { color: var(--color-secondary); }
+
+/* Phrase 1 exit — sweeps up */
+.hdt-frame-1.hdt-exit {
+    animation: hdt-frame-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+@keyframes hdt-frame-out {
+    to { opacity: 0; transform: translateY(-22px); filter: blur(7px); }
+}
+
+/* Phrase 2 — absolute until JS moves it to flow; words animate on .hdt-enter */
+.hdt-frame-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hdt-frame-2.hdt-enter {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Frame 2 words — triggered when parent gets .hdt-enter */
+.hdt-w2 {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(5px);
+}
+
+.hdt-frame-2.hdt-enter .hdt-w2 {
+    animation: hdt-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.1s + var(--i) * 0.13s);
+}
+
+/* Phrase 3 — absolute until JS moves it to flow; smooth whole-frame transition */
+.hdt-frame-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(7px);
+    pointer-events: none;
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hdt-frame-3.hdt-enter {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    pointer-events: auto;
+}
+
+/* ── Mobile — iPhone 14 and similar (≤ 768px) ── */
+@media (max-width: 768px) {
+    /* Container: full width, no overflow */
+    .hero-dyn-title {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    /* Tighter font so long words ("Transparência", "Plataforma") don't overflow */
+    .hdt-frame {
+        font-size: clamp(22px, 5.8vw, 28px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.015em !important;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Slightly more breathing room between lines on mobile */
+    .hdt-br { height: 2px; }
 }
